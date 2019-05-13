@@ -32,6 +32,7 @@
             this.ColumnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnLead = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -65,14 +66,17 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnLead2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgv_projects = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnLead3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgv_departments = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnLead4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgv_employees = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -103,7 +107,8 @@
             this.dgv_companies.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnID,
             this.ColumnName,
-            this.ColumnCode});
+            this.ColumnCode,
+            this.ColumnLead});
             this.dgv_companies.Location = new System.Drawing.Point(12, 25);
             this.dgv_companies.MultiSelect = false;
             this.dgv_companies.Name = "dgv_companies";
@@ -135,6 +140,13 @@
             this.ColumnCode.Name = "ColumnCode";
             this.ColumnCode.ReadOnly = true;
             this.ColumnCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnLead
+            // 
+            this.ColumnLead.HeaderText = "Lead";
+            this.ColumnLead.Name = "ColumnLead";
+            this.ColumnLead.ReadOnly = true;
+            this.ColumnLead.Visible = false;
             // 
             // label1
             // 
@@ -368,6 +380,7 @@
             this.btn_employee_hire.TabIndex = 2;
             this.btn_employee_hire.Text = "Hire Employee";
             this.btn_employee_hire.UseVisualStyleBackColor = true;
+            this.btn_employee_hire.Click += new System.EventHandler(this.btn_employee_hire_Click);
             // 
             // btn_company_setLead
             // 
@@ -416,7 +429,8 @@
             this.dgv_divisions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn7});
+            this.dataGridViewTextBoxColumn7,
+            this.ColumnLead2});
             this.dgv_divisions.Location = new System.Drawing.Point(248, 25);
             this.dgv_divisions.MultiSelect = false;
             this.dgv_divisions.Name = "dgv_divisions";
@@ -449,6 +463,13 @@
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
             this.dataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // ColumnLead2
+            // 
+            this.ColumnLead2.HeaderText = "Lead";
+            this.ColumnLead2.Name = "ColumnLead2";
+            this.ColumnLead2.ReadOnly = true;
+            this.ColumnLead2.Visible = false;
+            // 
             // dgv_projects
             // 
             this.dgv_projects.AllowUserToAddRows = false;
@@ -460,7 +481,8 @@
             this.dgv_projects.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn8});
+            this.dataGridViewTextBoxColumn8,
+            this.ColumnLead3});
             this.dgv_projects.Location = new System.Drawing.Point(484, 25);
             this.dgv_projects.MultiSelect = false;
             this.dgv_projects.Name = "dgv_projects";
@@ -493,6 +515,13 @@
             this.dataGridViewTextBoxColumn8.ReadOnly = true;
             this.dataGridViewTextBoxColumn8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // ColumnLead3
+            // 
+            this.ColumnLead3.HeaderText = "Lead";
+            this.ColumnLead3.Name = "ColumnLead3";
+            this.ColumnLead3.ReadOnly = true;
+            this.ColumnLead3.Visible = false;
+            // 
             // dgv_departments
             // 
             this.dgv_departments.AllowUserToAddRows = false;
@@ -504,7 +533,8 @@
             this.dgv_departments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn9});
+            this.dataGridViewTextBoxColumn9,
+            this.ColumnLead4});
             this.dgv_departments.Location = new System.Drawing.Point(720, 25);
             this.dgv_departments.MultiSelect = false;
             this.dgv_departments.Name = "dgv_departments";
@@ -537,6 +567,13 @@
             this.dataGridViewTextBoxColumn9.ReadOnly = true;
             this.dataGridViewTextBoxColumn9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // ColumnLead4
+            // 
+            this.ColumnLead4.HeaderText = "Lead";
+            this.ColumnLead4.Name = "ColumnLead4";
+            this.ColumnLead4.ReadOnly = true;
+            this.ColumnLead4.Visible = false;
+            // 
             // dgv_employees
             // 
             this.dgv_employees.AllowUserToAddRows = false;
@@ -557,7 +594,6 @@
             this.dgv_employees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_employees.Size = new System.Drawing.Size(230, 407);
             this.dgv_employees.TabIndex = 0;
-            this.dgv_employees.SelectionChanged += new System.EventHandler(this.dgv_departments_SelectionChanged);
             // 
             // dataGridViewTextBoxColumn10
             // 
@@ -589,6 +625,7 @@
             this.btn_company_remove.TabIndex = 2;
             this.btn_company_remove.Text = "Remove Company";
             this.btn_company_remove.UseVisualStyleBackColor = true;
+            this.btn_company_remove.Click += new System.EventHandler(this.btn_company_remove_Click);
             // 
             // btn_company_add
             // 
@@ -608,6 +645,7 @@
             this.btn_division_remove.TabIndex = 2;
             this.btn_division_remove.Text = "Remove Division";
             this.btn_division_remove.UseVisualStyleBackColor = true;
+            this.btn_division_remove.Click += new System.EventHandler(this.btn_division_remove_Click);
             // 
             // btn_division_add
             // 
@@ -617,6 +655,7 @@
             this.btn_division_add.TabIndex = 2;
             this.btn_division_add.Text = "Add Division";
             this.btn_division_add.UseVisualStyleBackColor = true;
+            this.btn_division_add.Click += new System.EventHandler(this.btn_division_add_Click);
             // 
             // btn_project_remove
             // 
@@ -626,6 +665,7 @@
             this.btn_project_remove.TabIndex = 2;
             this.btn_project_remove.Text = "Remove Project";
             this.btn_project_remove.UseVisualStyleBackColor = true;
+            this.btn_project_remove.Click += new System.EventHandler(this.btn_project_remove_Click);
             // 
             // btn_project_add
             // 
@@ -635,6 +675,7 @@
             this.btn_project_add.TabIndex = 2;
             this.btn_project_add.Text = "Add Project";
             this.btn_project_add.UseVisualStyleBackColor = true;
+            this.btn_project_add.Click += new System.EventHandler(this.btn_project_add_Click);
             // 
             // btn_department_remove
             // 
@@ -644,6 +685,7 @@
             this.btn_department_remove.TabIndex = 2;
             this.btn_department_remove.Text = "Remove Department";
             this.btn_department_remove.UseVisualStyleBackColor = true;
+            this.btn_department_remove.Click += new System.EventHandler(this.btn_department_remove_Click);
             // 
             // btn_department_add
             // 
@@ -653,6 +695,7 @@
             this.btn_department_add.TabIndex = 2;
             this.btn_department_add.Text = "Add Department";
             this.btn_department_add.UseVisualStyleBackColor = true;
+            this.btn_department_add.Click += new System.EventHandler(this.btn_department_add_Click);
             // 
             // MainView
             // 
@@ -745,21 +788,9 @@
         private System.Windows.Forms.Button btn_division_setLead;
         private System.Windows.Forms.Button btn_project_setLead;
         private System.Windows.Forms.Button btn_department_setLead;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCode;
         private System.Windows.Forms.DataGridView dgv_divisions;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridView dgv_projects;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridView dgv_departments;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridView dgv_employees;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
@@ -772,6 +803,22 @@
         private System.Windows.Forms.Button btn_project_add;
         private System.Windows.Forms.Button btn_department_remove;
         private System.Windows.Forms.Button btn_department_add;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLead;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLead2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLead3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLead4;
     }
 }
 

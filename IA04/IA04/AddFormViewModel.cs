@@ -12,9 +12,12 @@ namespace IA04
     {
         private Functions _functions = new Functions();
 
-        public void AddNode(int? parentNode, string companyName, string companyCode, Enums.HierarchyLevel hierarchyLevel)
+        public HierarchyLevel HierarchyLevel { get; set; }
+        public int? ParentNode { get; set; }
+
+        public void AddNode( string companyName, string companyCode)
         {
-            _functions.AddNode(parentNode, companyName, companyCode, hierarchyLevel);
+            _functions.AddNode(ParentNode, companyName, companyCode, HierarchyLevel);
         }
     }
 }

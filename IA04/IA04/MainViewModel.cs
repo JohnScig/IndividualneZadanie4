@@ -1,10 +1,12 @@
 ﻿using DatabaseCommunication;
 using Logic;
+using Support;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace IA04
 {
@@ -18,6 +20,14 @@ namespace IA04
         public List<NodeModel> ListOfDepartments { get; set; } = new List<NodeModel>();
         public List<EmployeeModel> ListOfEmployees { get; set; } = new List<EmployeeModel>();
 
+        public EmployeeModel CompanyLead { get; set; } = new EmployeeModel();
+        public EmployeeModel DivisionLead { get; set; } = new EmployeeModel();
+        public EmployeeModel ProjectLead { get; set; } = new EmployeeModel();
+
+
+        public EmployeeModel DepartmentLead { get; set; } = new EmployeeModel();
+
+
         public MainViewModel()
         {
             LoadListOfCompanies();
@@ -25,7 +35,8 @@ namespace IA04
 
         internal void LoadListOfCompanies()
         {
-            ListOfCompanies = _functions.GetCompanies(); 
+            ListOfCompanies = _functions.GetCompanies();
+
         }
 
         internal void LoadListOfDivisions(int parentNodeID)
@@ -43,9 +54,26 @@ namespace IA04
             ListOfDepartments = _functions.GetChildren(parentNodeID);
         }
 
-        internal void LoadListOfEmployees(int nodeID)
+        internal void LoadListOfEmployees(int parentNodeID)
         {
-            ListOfEmployees = _functions.GetEmployeesByDept(nodeID);
+            ListOfEmployees = _functions.GetEmployeesByDept(parentNodeID);
+        }
+
+        internal string GetLeader(int employeeID)
+        {
+            EmployeeModel employee = _functions.GetEmployeeByID(employeeID);
+            return $"{employee.FirstName} {employee.LastName}";
+        }
+
+        internal void RemoveNode(int nodeID)
+        {
+
+            foreach (var item in _functions.GetChildren(nodeID))
+            {
+                RemoveNode(item.NodeID);
+            }
+            _functions.RemoveNode(nodeID);
+
         }
     }
 }

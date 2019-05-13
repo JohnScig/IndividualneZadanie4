@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Support;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -45,7 +46,7 @@ namespace DatabaseCommunication.Repositories
                                 node.NodeID = reader.GetInt32(0);
                                 node.Name = reader.GetString(1);
                                 node.Code = reader.GetString(2);
-                                node.HierarchyLevel = (Support.Enums.HierarchyLevel) reader.GetInt32(3);
+                                node.HierarchyLevel = (Support.HierarchyLevel) reader.GetInt32(3);
                                 node.DirectorID = reader.IsDBNull(4) ? (int?)null : reader.GetInt32(4);
                                 node.ParentNode = reader.IsDBNull(5) ? (int?)null : reader.GetInt32(5);
                                 
@@ -62,6 +63,40 @@ namespace DatabaseCommunication.Repositories
                         return nodes;
                     }
 
+                }
+            }
+        }
+
+        public void RemoveNodeByID(int nodeID)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                }
+
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = @"Delete from Nodes where NodeID = @NodeID";
+                    command.Parameters.Add("@NodeID", SqlDbType.Int).Value = nodeID;
+
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                    }
                 }
             }
         }
@@ -99,7 +134,7 @@ namespace DatabaseCommunication.Repositories
                                 node.NodeID = reader.GetInt32(0);
                                 node.Name = reader.GetString(1);
                                 node.Code = reader.GetString(2);
-                                node.HierarchyLevel = (Support.Enums.HierarchyLevel)reader.GetInt32(3);
+                                node.HierarchyLevel = (HierarchyLevel)reader.GetInt32(3);
                                 node.DirectorID = reader.IsDBNull(4) ? (int?)null : reader.GetInt32(4);
                                 node.ParentNode = null;
 

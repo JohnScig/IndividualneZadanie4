@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Support;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Support.Enums;
 
 namespace DatabaseCommunication
 {

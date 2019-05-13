@@ -14,11 +14,23 @@ namespace Logic
         private NodeRepository _nodeRepository = new NodeRepository();
         private EmployeeRepository _employeeRepository = new EmployeeRepository();
 
-
-
         public List<NodeModel> GetCompanies()
         {
             return _nodeRepository.GetCompanies();
+        }
+
+        public void AddEmployee(string title, string firstName, string lastName, string phone, string email, int parentNodeID)
+        {
+            EmployeeModel employee = new EmployeeModel()
+            {
+                Title = title,
+                FirstName = firstName,
+                LastName = lastName,
+                Phone = phone,
+                Email = email,
+                DepartmentID = parentNodeID
+            };
+            _employeeRepository.AddEmployee(employee);
         }
 
         public List<NodeModel> GetChildren(int parentNodeID)
@@ -31,7 +43,7 @@ namespace Logic
             return _employeeRepository.GetEmployeesByDept(nodeID);
         }
 
-        public void AddNode(int? parentNode, string companyName, string companyCode, Enums.HierarchyLevel hierarchyLevel)
+        public void AddNode(int? parentNode, string companyName, string companyCode, HierarchyLevel hierarchyLevel)
         {
             NodeModel node = new NodeModel()
             {
@@ -41,6 +53,16 @@ namespace Logic
                 ParentNode = parentNode
             };
             _nodeRepository.AddNode(node);
+        }
+
+        public EmployeeModel GetEmployeeByID(int employeeID)
+        {
+            return _employeeRepository.GetEmployeeByID(employeeID);
+        }
+
+        public void RemoveNode(int nodeID)
+        {
+            _nodeRepository.RemoveNodeByID(nodeID);
         }
     }
 }

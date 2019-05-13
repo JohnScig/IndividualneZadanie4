@@ -30,7 +30,7 @@ namespace DatabaseCommunication.Repositories
 
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = @"SELECT * FROM Employee
+                    command.CommandText = @"SELECT * FROM Employees
                                             WHERE EmployeeID = @EmployeeID";
                     command.Parameters.Add("@EmployeeID", SqlDbType.Int).Value = employeeID;
 
@@ -47,7 +47,7 @@ namespace DatabaseCommunication.Repositories
                                 //employee.ReportsTo = reader.IsDBNull(4) ? (int?)null : reader.GetInt32(4);
                                 employee.Phone= reader.GetString(4);
                                 employee.Email = reader.GetString(5);
-                                employee.DepartmentID = reader.GetInt32(6);
+                                employee.DepartmentID = reader.IsDBNull(6) ? (int?)null : reader.GetInt32(6);
                             }
                             return employee;
                         }
@@ -63,6 +63,49 @@ namespace DatabaseCommunication.Repositories
                 }
             }
 
+        }
+
+        public void AddEmployee(EmployeeModel employee)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return;
+                }
+
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = @"INSERT INTO Employees(Title, FirstName, LastName, Phone, Email, DepartmentID)
+                                                VALUES(@Title, @FirstName, @LastName, @Phone, @Email, @DepartmentID)";
+
+                    command.Parameters.Add("@Title", SqlDbType.NVarChar).Value = employee.Title;
+                    command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = employee.FirstName;
+                    command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = employee.LastName;
+                    command.Parameters.Add("@Phone", SqlDbType.NVarChar).Value = employee.Phone;
+                    command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = employee.Email;
+                    command.Parameters.Add("@DepartmentID", SqlDbType.Int).Value = (object)employee.DepartmentID ?? DBNull.Value;
+
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return;
+                    }
+                }
+            }
         }
 
         public List<EmployeeModel> GetEmployeesByDept(int departmentID)
