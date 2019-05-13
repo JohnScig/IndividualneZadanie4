@@ -25,7 +25,7 @@ namespace DatabaseCommunication.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server = TRANSFORMER10\\SQLEXPRESS2017; Database = AttendanceSystem; Trusted_Conne" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Server = TRANSFORMER10\\SQLEXPRESS2017; Database = CompanyHierarchy; Trusted_Conne" +
             "ction = True;")]
         public string ConnString {
             get {

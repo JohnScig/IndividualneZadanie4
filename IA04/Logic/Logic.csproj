@@ -44,5 +44,11 @@
     <Compile Include="Functions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DatabaseCommunication\DatabaseCommunication.csproj">
+      <Project>{993A709B-5E97-4215-A8D9-EC9D736D5638}</Project>
+      <Name>DatabaseCommunication</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

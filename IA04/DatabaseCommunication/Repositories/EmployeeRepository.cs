@@ -84,7 +84,7 @@ namespace DatabaseCommunication.Repositories
 
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = @"SELECT * FROM Employee
+                    command.CommandText = @"SELECT * FROM Employees
                                             WHERE DepartmentID = @DepartmentID";
                     command.Parameters.Add("@DepartmentID", SqlDbType.Int).Value = departmentID;
 
@@ -121,6 +121,40 @@ namespace DatabaseCommunication.Repositories
                 }
             }
 
+        }
+
+        public void RemoveEmployee(int employeeID)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                }
+
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = @"Delete from Employees where EmployeeID = @employeeId";
+                    command.Parameters.Add("@employeeId", SqlDbType.Int).Value = employeeID;
+
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                    }
+                }
+            }
         }
     }
 }
