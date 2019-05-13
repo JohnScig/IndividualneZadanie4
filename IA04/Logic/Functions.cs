@@ -1,5 +1,6 @@
 ﻿using DatabaseCommunication;
 using DatabaseCommunication.Repositories;
+using Support;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace Logic
     {
         private NodeRepository _nodeRepository = new NodeRepository();
         private EmployeeRepository _employeeRepository = new EmployeeRepository();
+
+
 
         public List<NodeModel> GetCompanies()
         {
@@ -26,6 +29,18 @@ namespace Logic
         public List<EmployeeModel> GetEmployeesByDept(int nodeID)
         {
             return _employeeRepository.GetEmployeesByDept(nodeID);
+        }
+
+        public void AddNode(int? parentNode, string companyName, string companyCode, Enums.HierarchyLevel hierarchyLevel)
+        {
+            NodeModel node = new NodeModel()
+            {
+                Name = companyName,
+                Code = companyCode,
+                HierarchyLevel = hierarchyLevel,
+                ParentNode = parentNode
+            };
+            _nodeRepository.AddNode(node);
         }
     }
 }

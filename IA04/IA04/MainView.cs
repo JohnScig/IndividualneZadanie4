@@ -1,4 +1,5 @@
 ﻿using DatabaseCommunication;
+using Support;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -99,9 +100,15 @@ namespace IA04
             }
         }
 
-
-
-
+        private void btn_company_add_Click(object sender, EventArgs e)
+        {
+            using (AddFormView addCompany = new AddFormView(Enums.HierarchyLevel.Company, null))
+            {
+                addCompany.ShowDialog();
+                _mainViewModel.LoadListOfCompanies();
+                LoadGrid(dgv_companies, _mainViewModel.ListOfCompanies);
+            }
+        }
     }
 }
 

@@ -598,6 +598,7 @@
             this.btn_company_add.TabIndex = 2;
             this.btn_company_add.Text = "Add Company";
             this.btn_company_add.UseVisualStyleBackColor = true;
+            this.btn_company_add.Click += new System.EventHandler(this.btn_company_add_Click);
             // 
             // btn_division_remove
             // 

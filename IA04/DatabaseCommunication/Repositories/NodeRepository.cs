@@ -118,5 +118,49 @@ namespace DatabaseCommunication.Repositories
                 }
             }
         }
+
+        public void AddNode(NodeModel node)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return;
+                }
+
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+
+                    command.CommandText = @"INSERT INTO Nodes(Name, Code, HierarchyLevel, ParentNodeID)
+                                                VALUES(@Name, @Code, @HierarchyLevel, @ParentNodeID)";
+
+                    command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = node.Name;
+                    command.Parameters.Add("@Code", SqlDbType.NVarChar).Value = node.Code;
+                    command.Parameters.Add("@HierarchyLevel", SqlDbType.Int).Value = (int) node.HierarchyLevel;
+                    command.Parameters.Add("@ParentNodeID", SqlDbType.Int).Value = (object)node.ParentNode ?? DBNull.Value;
+
+
+
+                    try
+                    {
+                       command.ExecuteNonQuery();
+                    }
+
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return;
+                    }
+                }
+            }
+        }
     }
 }

@@ -23,7 +23,7 @@ namespace IA04
             LoadListOfCompanies();
         }
 
-        private void LoadListOfCompanies()
+        internal void LoadListOfCompanies()
         {
             ListOfCompanies = _functions.GetCompanies(); 
         }

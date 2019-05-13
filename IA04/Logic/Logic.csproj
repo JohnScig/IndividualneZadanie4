@@ -49,6 +49,10 @@
       <Project>{993A709B-5E97-4215-A8D9-EC9D736D5638}</Project>
       <Name>DatabaseCommunication</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Support\Support.csproj">
+      <Project>{056C968E-4FDA-47D6-AFC6-A6DE41F75D83}</Project>
+      <Name>Support</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

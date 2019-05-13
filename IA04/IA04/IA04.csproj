@@ -46,6 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddFormView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddFormView.Designer.cs">
+      <DependentUpon>AddFormView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddFormViewModel.cs" />
     <Compile Include="MainView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -55,6 +62,9 @@
     <Compile Include="MainViewModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddFormView.resx">
+      <DependentUpon>AddFormView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
@@ -88,6 +98,10 @@
     <ProjectReference Include="..\Logic\Logic.csproj">
       <Project>{783E0778-06BC-433F-BE12-83D15A0BE742}</Project>
       <Name>Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Support\Support.csproj">
+      <Project>{056C968E-4FDA-47D6-AFC6-A6DE41F75D83}</Project>
+      <Name>Support</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
