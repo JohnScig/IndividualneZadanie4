@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DatabaseCommunication;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,79 +19,104 @@ namespace IA04
         {
             InitializeComponent();
             _mainViewModel = new MainViewModel();
-            LoadCompanyGrid();
-            dgv_companies.ClearSelection();
+            LoadGrid(dgv_companies, _mainViewModel.ListOfCompanies);
         }
 
-        private void LoadCompanyGrid()
+        private void dgv_companies_SelectionChanged(object sender, EventArgs e)
         {
-            //dgv_companies.DataSource = _mainViewModel.ListOfCompanies;
-            foreach (var Company in _mainViewModel.ListOfCompanies)
+            if (dgv_companies.SelectedRows.Count != 0)
             {
-                dgv_companies.Rows.Add(Company.Name, Company.Code);
+                _mainViewModel.LoadListOfDivisions(Convert.ToInt32(dgv_companies.SelectedRows[0].Cells[0].Value));
+                LoadGrid(dgv_divisions, _mainViewModel.ListOfDivisions);
+            }
+            else
+            {
+                dgv_divisions.Rows.Clear();
             }
         }
 
-        private void dgv_companies_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgv_divisions_SelectionChanged(object sender, EventArgs e)
         {
-            LoadDivisionGrid(dgv_companies.SelectedRows[0].Index);
-        }
-
-        private void LoadDivisionGrid(int selectionID)
-        {
-            //_mainViewModel.LoadListOfDivisions(_mainViewModel.ListOfCompanies[selectionID].NodeID);
-            //dgv_divisions.DataSource = _mainViewModel.ListOfDivisions;
-            _mainViewModel.LoadListOfDivisions(_mainViewModel.ListOfCompanies[dgv_companies.SelectedRows[0].Index].NodeID);
-            dgv_divisions.Rows.Clear();
-            foreach (var division in _mainViewModel.ListOfDivisions)
+            if (dgv_divisions.SelectedRows.Count != 0)
             {
-                dgv_divisions.Rows.Add(division.Name, division.Code);
+                _mainViewModel.LoadListOfProjects(Convert.ToInt32(dgv_divisions.SelectedRows[0].Cells[0].Value));
+                LoadGrid(dgv_projects, _mainViewModel.ListOfProjects);
+            }
+            else
+            {
+                dgv_projects.Rows.Clear();
             }
         }
 
-        private void dgv_divisions_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgv_projects_SelectionChanged(object sender, EventArgs e)
         {
-            LoadProjectsGrid();
-        }
-
-        private void LoadProjectsGrid()
-        {
-            _mainViewModel.LoadListOfProjects(_mainViewModel.ListOfDivisions[dgv_divisions.SelectedRows[0].Index].NodeID);
-            dgv_projects.Rows.Clear();
-            foreach (var project in _mainViewModel.ListOfProjects)
+            if (dgv_projects.SelectedRows.Count != 0)
             {
-                dgv_projects.Rows.Add(project.Name, project.Code);
+                _mainViewModel.LoadListOfDepartments(Convert.ToInt32(dgv_projects.SelectedRows[0].Cells[0].Value));
+                LoadGrid(dgv_departments, _mainViewModel.ListOfDepartments);
+            }
+            else
+            {
+                dgv_departments.Rows.Clear();
             }
         }
 
-        private void dgv_projects_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgv_departments_SelectionChanged(object sender, EventArgs e)
         {
-            LoadDepartmentsGrid();
-        }
-
-        private void LoadDepartmentsGrid()
-        {
-            _mainViewModel.LoadListOfDepartments(_mainViewModel.ListOfProjects[dgv_projects.SelectedRows[0].Index].NodeID);
-            dgv_departments.Rows.Clear();
-            foreach (var department in _mainViewModel.ListOfDepartments)
+            if (dgv_departments.SelectedRows.Count != 0)
             {
-                dgv_departments.Rows.Add(department.Name, department.Code);
+                _mainViewModel.LoadListOfEmployees(Convert.ToInt32(dgv_departments.SelectedRows[0].Cells[0].Value));
+                LoadGrid(dgv_employees, _mainViewModel.ListOfEmployees);
+            }
+            else
+            {
+                dgv_employees.Rows.Clear();
             }
         }
 
-        private void dgv_departments_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void LoadGrid(DataGridView dataGridView, List<NodeModel> listOfNodes)
         {
-            LoadEmployeesGrid();
+            dataGridView.Rows.Clear();
+            foreach (var node in listOfNodes)
+            {
+                dataGridView.Rows.Add(node.NodeID, node.Name, node.Code);
+            }
+
+            //dataGridView.DataSource = listOfNodes;
+            //dataGridView.Columns[0].Visible = false;
+            //dataGridView.Columns[3].Visible = false;
+            //dataGridView.Columns[4].Visible = false;
+            //dataGridView.Columns[5].Visible = false;
+            //dataGridView.Columns[2].FillWeight = 60;
         }
 
-        private void LoadEmployeesGrid()
+        private void LoadGrid(DataGridView dataGridView, List<EmployeeModel> listOfEmployees)
         {
-            _mainViewModel.LoadListOfEmployees(_mainViewModel.ListOfDepartments[dgv_departments.SelectedRows[0].Index].NodeID);
-            dgv_employees.Rows.Clear();
-            foreach (var employee in _mainViewModel.ListOfEmployees)
+            dataGridView.Rows.Clear();
+            foreach (var employee in listOfEmployees)
             {
-                dgv_employees.Rows.Add(employee.FirstName, employee.LastName);
+                dataGridView.Rows.Add(employee.EmployeeID, employee.FirstName, employee.LastName);
             }
         }
+
+
+
+
     }
 }
+
+
+// unifying the selection functions
+//private void SelectionChanged(object sender)
+//{
+//    DataGridView dgv = (DataGridView)sender;
+//    if (dgv.SelectedRows.Count != 0)
+//    {
+//        _mainViewModel.LoadListOfProjects(Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value));
+//        LoadGrid(dgv_projects, _mainViewModel.ListOfProjects);
+//    }
+//    else
+//    {
+//        dgv_projects.Rows.Clear();
+//    }
+//}
