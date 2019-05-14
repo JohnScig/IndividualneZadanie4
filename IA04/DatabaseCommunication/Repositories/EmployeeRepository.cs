@@ -65,6 +65,55 @@ namespace DatabaseCommunication.Repositories
 
         }
 
+        public void EditEmployee(EmployeeModel employee)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return;
+                }
+
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = @"UPDATE Employees 
+                                            SET Title = @Title,
+                                                FirstName = @FirstName,    
+                                                LastName = @LastName,
+                                                Phone = @Phone,
+                                                Email = @Email
+                                            WHERE EmployeeID = @EmployeeID";
+
+
+                    command.Parameters.Add("@Title", SqlDbType.NVarChar).Value = employee.Title;
+                    command.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = employee.FirstName;
+                    command.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = employee.LastName;
+                    command.Parameters.Add("@Phone", SqlDbType.NVarChar).Value = employee.Phone;
+                    command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = employee.Email;
+                    command.Parameters.Add("@EmployeeID", SqlDbType.Int).Value = employee.EmployeeID;
+
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return;
+                    }
+                }
+            }
+        }
+
         public void EmployPerson(int employeeID, int nodeID)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
@@ -83,7 +132,7 @@ namespace DatabaseCommunication.Repositories
 
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = @"UPDATE Employees SET DepartmentID = @NodeID, WHERE EmployeeID = @EmployeeID ";
+                    command.CommandText = @"UPDATE Employees SET DepartmentID = @NodeID WHERE EmployeeID = @EmployeeID ";
 
                     command.Parameters.Add("@NodeID", SqlDbType.Int).Value = nodeID;
                     command.Parameters.Add("@EmployeeID", SqlDbType.Int).Value = employeeID;
@@ -103,7 +152,7 @@ namespace DatabaseCommunication.Repositories
             }
         }
 
-        public List<EmployeeModel> GetUnemployed()
+        public List<EmployeeModel> GetUnassigned()
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
             {

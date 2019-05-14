@@ -54,10 +54,6 @@
             this.btn_project_show = new System.Windows.Forms.Button();
             this.btn_department_edit = new System.Windows.Forms.Button();
             this.btn_department_show = new System.Windows.Forms.Button();
-            this.btn_employee_edit = new System.Windows.Forms.Button();
-            this.btn_employee_show = new System.Windows.Forms.Button();
-            this.btn_employee_fire = new System.Windows.Forms.Button();
-            this.btn_employee_hire = new System.Windows.Forms.Button();
             this.btn_company_setLead = new System.Windows.Forms.Button();
             this.btn_division_setLead = new System.Windows.Forms.Button();
             this.btn_project_setLead = new System.Windows.Forms.Button();
@@ -89,6 +85,9 @@
             this.btn_project_add = new System.Windows.Forms.Button();
             this.btn_department_remove = new System.Windows.Forms.Button();
             this.btn_department_add = new System.Windows.Forms.Button();
+            this.btn_AssignEmployee = new System.Windows.Forms.Button();
+            this.btn_ViewEmployees = new System.Windows.Forms.Button();
+            this.btn_RemoveEmployee = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_companies)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_divisions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_projects)).BeginInit();
@@ -348,44 +347,6 @@
             this.btn_department_show.TabIndex = 2;
             this.btn_department_show.Text = "Department Details";
             this.btn_department_show.UseVisualStyleBackColor = true;
-            // 
-            // btn_employee_edit
-            // 
-            this.btn_employee_edit.Location = new System.Drawing.Point(956, 467);
-            this.btn_employee_edit.Name = "btn_employee_edit";
-            this.btn_employee_edit.Size = new System.Drawing.Size(114, 23);
-            this.btn_employee_edit.TabIndex = 2;
-            this.btn_employee_edit.Text = "Edit Employee";
-            this.btn_employee_edit.UseVisualStyleBackColor = true;
-            // 
-            // btn_employee_show
-            // 
-            this.btn_employee_show.Location = new System.Drawing.Point(956, 438);
-            this.btn_employee_show.Name = "btn_employee_show";
-            this.btn_employee_show.Size = new System.Drawing.Size(114, 23);
-            this.btn_employee_show.TabIndex = 2;
-            this.btn_employee_show.Text = "Employee Details";
-            this.btn_employee_show.UseVisualStyleBackColor = true;
-            // 
-            // btn_employee_fire
-            // 
-            this.btn_employee_fire.Location = new System.Drawing.Point(1072, 467);
-            this.btn_employee_fire.Name = "btn_employee_fire";
-            this.btn_employee_fire.Size = new System.Drawing.Size(114, 23);
-            this.btn_employee_fire.TabIndex = 2;
-            this.btn_employee_fire.Text = "Fire Employee";
-            this.btn_employee_fire.UseVisualStyleBackColor = true;
-            this.btn_employee_fire.Click += new System.EventHandler(this.btn_employee_fire_Click);
-            // 
-            // btn_employee_hire
-            // 
-            this.btn_employee_hire.Location = new System.Drawing.Point(1072, 438);
-            this.btn_employee_hire.Name = "btn_employee_hire";
-            this.btn_employee_hire.Size = new System.Drawing.Size(114, 23);
-            this.btn_employee_hire.TabIndex = 2;
-            this.btn_employee_hire.Text = "Hire Employee";
-            this.btn_employee_hire.UseVisualStyleBackColor = true;
-            this.btn_employee_hire.Click += new System.EventHandler(this.btn_employee_hire_Click);
             // 
             // btn_company_setLead
             // 
@@ -706,6 +667,36 @@
             this.btn_department_add.UseVisualStyleBackColor = true;
             this.btn_department_add.Click += new System.EventHandler(this.btn_department_add_Click);
             // 
+            // btn_AssignEmployee
+            // 
+            this.btn_AssignEmployee.Location = new System.Drawing.Point(1072, 438);
+            this.btn_AssignEmployee.Name = "btn_AssignEmployee";
+            this.btn_AssignEmployee.Size = new System.Drawing.Size(114, 23);
+            this.btn_AssignEmployee.TabIndex = 2;
+            this.btn_AssignEmployee.Text = "Assign Employee";
+            this.btn_AssignEmployee.UseVisualStyleBackColor = true;
+            this.btn_AssignEmployee.Click += new System.EventHandler(this.btn_AssignEmployee_Click);
+            // 
+            // btn_ViewEmployees
+            // 
+            this.btn_ViewEmployees.Location = new System.Drawing.Point(956, 554);
+            this.btn_ViewEmployees.Name = "btn_ViewEmployees";
+            this.btn_ViewEmployees.Size = new System.Drawing.Size(230, 23);
+            this.btn_ViewEmployees.TabIndex = 2;
+            this.btn_ViewEmployees.Text = "View Unassigned Employees";
+            this.btn_ViewEmployees.UseVisualStyleBackColor = true;
+            this.btn_ViewEmployees.Click += new System.EventHandler(this.btn_ViewEmployees_Click);
+            // 
+            // btn_RemoveEmployee
+            // 
+            this.btn_RemoveEmployee.Location = new System.Drawing.Point(1072, 467);
+            this.btn_RemoveEmployee.Name = "btn_RemoveEmployee";
+            this.btn_RemoveEmployee.Size = new System.Drawing.Size(114, 23);
+            this.btn_RemoveEmployee.TabIndex = 2;
+            this.btn_RemoveEmployee.Text = "Remove Employee";
+            this.btn_RemoveEmployee.UseVisualStyleBackColor = true;
+            this.btn_RemoveEmployee.Click += new System.EventHandler(this.btn_RemoveEmployee_Click);
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -719,14 +710,13 @@
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.btn_employee_show);
+            this.Controls.Add(this.btn_RemoveEmployee);
+            this.Controls.Add(this.btn_AssignEmployee);
             this.Controls.Add(this.btn_department_add);
             this.Controls.Add(this.btn_department_show);
-            this.Controls.Add(this.btn_employee_hire);
-            this.Controls.Add(this.btn_employee_fire);
-            this.Controls.Add(this.btn_employee_edit);
             this.Controls.Add(this.btn_project_add);
             this.Controls.Add(this.btn_project_show);
+            this.Controls.Add(this.btn_ViewEmployees);
             this.Controls.Add(this.btn_department_setLead);
             this.Controls.Add(this.btn_department_remove);
             this.Controls.Add(this.btn_department_edit);
@@ -789,10 +779,6 @@
         private System.Windows.Forms.Button btn_project_show;
         private System.Windows.Forms.Button btn_department_edit;
         private System.Windows.Forms.Button btn_department_show;
-        private System.Windows.Forms.Button btn_employee_edit;
-        private System.Windows.Forms.Button btn_employee_show;
-        private System.Windows.Forms.Button btn_employee_fire;
-        private System.Windows.Forms.Button btn_employee_hire;
         private System.Windows.Forms.Button btn_company_setLead;
         private System.Windows.Forms.Button btn_division_setLead;
         private System.Windows.Forms.Button btn_project_setLead;
@@ -828,6 +814,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLead4;
+        private System.Windows.Forms.Button btn_AssignEmployee;
+        private System.Windows.Forms.Button btn_ViewEmployees;
+        private System.Windows.Forms.Button btn_RemoveEmployee;
     }
 }
 

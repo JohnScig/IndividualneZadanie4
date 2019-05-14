@@ -39,7 +39,7 @@ namespace IA04
         internal void LoadUnemployed()
         {
             unemployedPeople = new List<EmployeeModel>();
-            unemployedPeople = _functions.GetUnemployed();
+            unemployedPeople = _functions.GetUnassigned();
         }
 
         internal void RemoveBoss()
@@ -54,6 +54,8 @@ namespace IA04
         internal void SetNewBoss(int employeeID)
         {
             _functions.SetNewBoss(Node.NodeID, employeeID);
+            _functions.EmployPerson(employeeID, Node.NodeID);
+
         }
     }
 }

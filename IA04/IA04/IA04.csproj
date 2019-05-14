@@ -60,6 +60,13 @@
       <DependentUpon>EditNodeView.cs</DependentUpon>
     </Compile>
     <Compile Include="EditNodeViewModel.cs" />
+    <Compile Include="EmployeesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeesView.Designer.cs">
+      <DependentUpon>EmployeesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeesViewModel.cs" />
     <Compile Include="MainView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +88,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditNodeView.resx">
       <DependentUpon>EditNodeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeesView.resx">
+      <DependentUpon>EmployeesView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>

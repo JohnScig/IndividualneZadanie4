@@ -40,6 +40,7 @@
             this.tb_Email = new System.Windows.Forms.TextBox();
             this.btn_OK = new System.Windows.Forms.Button();
             this.btn_generate = new System.Windows.Forms.Button();
+            this.btn_Cancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -124,7 +125,7 @@
             // 
             // btn_OK
             // 
-            this.btn_OK.Location = new System.Drawing.Point(227, 216);
+            this.btn_OK.Location = new System.Drawing.Point(227, 187);
             this.btn_OK.Name = "btn_OK";
             this.btn_OK.Size = new System.Drawing.Size(75, 23);
             this.btn_OK.TabIndex = 5;
@@ -142,11 +143,22 @@
             this.btn_generate.UseVisualStyleBackColor = true;
             this.btn_generate.Click += new System.EventHandler(this.btn_generate_Click);
             // 
-            // AddEmployeeFormView
+            // btn_Cancel
+            // 
+            this.btn_Cancel.Location = new System.Drawing.Point(227, 216);
+            this.btn_Cancel.Name = "btn_Cancel";
+            this.btn_Cancel.Size = new System.Drawing.Size(75, 23);
+            this.btn_Cancel.TabIndex = 7;
+            this.btn_Cancel.Text = "Cancel";
+            this.btn_Cancel.UseVisualStyleBackColor = true;
+            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
+            // 
+            // EditEmployeeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(323, 255);
+            this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.btn_generate);
             this.Controls.Add(this.btn_OK);
             this.Controls.Add(this.tb_Email);
@@ -159,7 +171,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "AddEmployeeFormView";
+            this.Name = "EditEmployeeView";
             this.Text = "AddEmployeeFormView";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -180,5 +192,6 @@
         private System.Windows.Forms.TextBox tb_Email;
         private System.Windows.Forms.Button btn_OK;
         private System.Windows.Forms.Button btn_generate;
+        private System.Windows.Forms.Button btn_Cancel;
     }
 }

@@ -19,7 +19,7 @@ namespace Logic
             return _nodeRepository.GetCompanies();
         }
 
-        public void AddEmployee(string title, string firstName, string lastName, string phone, string email, int parentNodeID)
+        public void AddEmployee(string title, string firstName, string lastName, string phone, string email)
         {
             EmployeeModel employee = new EmployeeModel()
             {
@@ -28,14 +28,33 @@ namespace Logic
                 LastName = lastName,
                 Phone = phone,
                 Email = email,
-                DepartmentID = parentNodeID
+                DepartmentID = null
             };
             _employeeRepository.AddEmployee(employee);
         }
 
-        public List<EmployeeModel> GetUnemployed()
+        public void DeleteEmployee(int employeeID)
         {
-            return _employeeRepository.GetUnemployed();
+            _employeeRepository.RemoveEmployee(employeeID);
+        }
+
+        public void EditEmployee(int employeeID, string title, string firstName, string lastName, string phone, string email)
+        {
+            EmployeeModel employee = new EmployeeModel()
+            {
+                EmployeeID = employeeID,
+                Title = title,
+                FirstName = firstName,
+                LastName = lastName,
+                Phone = phone,
+                Email = email
+            };
+            _employeeRepository.EditEmployee(employee);
+        }
+
+        public List<EmployeeModel> GetUnassigned()
+        {
+            return _employeeRepository.GetUnassigned();
 
         }
 
@@ -52,6 +71,11 @@ namespace Logic
         public void SetNewBoss(int nodeID, int employeeID)
         {
             _nodeRepository.SetNewBoss(nodeID, employeeID);
+            _employeeRepository.EmployPerson(employeeID, nodeID);
+        }
+
+        public void EmployPerson(int employeeID, int nodeID)
+        {
             _employeeRepository.EmployPerson(employeeID, nodeID);
         }
 

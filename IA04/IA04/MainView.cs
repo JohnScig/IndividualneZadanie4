@@ -15,14 +15,21 @@ namespace IA04
     public partial class MainView : Form
     {
         private MainViewModel _mainViewModel;
+        private List<Button> _companyButtons;
+        private List<Button> _divisionButtons;
+        private List<Button> _projectButtons;
+        private List<Button> _departmentButtons;
+        private List<Button> _employeeButtons;
 
         public MainView()
         {
             InitializeComponent();
             _mainViewModel = new MainViewModel();
             LoadGrid(dgv_companies, _mainViewModel.ListOfCompanies);
+            SetUpButtons();
         }
 
+        #region Selection Changed
         private void dgv_companies_SelectionChanged(object sender, EventArgs e)
         {
             if (dgv_companies.SelectedRows.Count != 0)
@@ -36,6 +43,7 @@ namespace IA04
                 dgv_divisions.Rows.Clear();
                 lbl_CompanyDirector.Text = "";
             }
+            LockButtons();
         }
 
         private void dgv_divisions_SelectionChanged(object sender, EventArgs e)
@@ -51,6 +59,7 @@ namespace IA04
                 dgv_projects.Rows.Clear();
                 lbl_DivisionDirector.Text = "";
             }
+            LockButtons();
         }
 
         private void dgv_projects_SelectionChanged(object sender, EventArgs e)
@@ -66,6 +75,7 @@ namespace IA04
                 dgv_departments.Rows.Clear();
                 lbl_ProjectDirector.Text = "";
             }
+            LockButtons();
         }
 
         private void dgv_departments_SelectionChanged(object sender, EventArgs e)
@@ -81,25 +91,12 @@ namespace IA04
                 dgv_employees.Rows.Clear();
                 lbl_DepartmentHead.Text = "";
             }
+            LockButtons();
         }
 
-        private void LoadGrid(DataGridView dataGridView, List<NodeModel> listOfNodes)
-        {
-            dataGridView.Rows.Clear();
-            foreach (var node in listOfNodes)
-            {
-                dataGridView.Rows.Add(node.NodeID, node.Name, node.Code, node.DirectorID);
-            }
-        }
+        #endregion
 
-        private void LoadGrid(DataGridView dataGridView, List<EmployeeModel> listOfEmployees)
-        {
-            dataGridView.Rows.Clear();
-            foreach (var employee in listOfEmployees)
-            {
-                dataGridView.Rows.Add(employee.EmployeeID, employee.FirstName, employee.LastName);
-            }
-        }
+        #region Adding Buttons
 
         private void btn_company_add_Click(object sender, EventArgs e)
         {
@@ -140,15 +137,9 @@ namespace IA04
             ReloadGrids();
         }
 
-        private void btn_employee_hire_Click(object sender, EventArgs e)
-        {
-            int parentNodeID = Convert.ToInt32(dgv_departments.SelectedRows[0].Cells[0].Value);
-            using (EditEmployeeView addDepartment = new EditEmployeeView(parentNodeID))
-            {
-                addDepartment.ShowDialog();
-            }
-            ReloadGrids();
-        }
+        #endregion
+
+        #region Removing Buttons
 
         private void btn_department_remove_Click(object sender, EventArgs e)
         {
@@ -174,11 +165,9 @@ namespace IA04
             ReloadGrids();
         }
 
-        private void btn_employee_fire_Click(object sender, EventArgs e)
-        {
-            _mainViewModel.RemoveEmployee(Convert.ToInt32(dgv_employees.SelectedRows[0].Cells[0].Value));
-            ReloadGrids();
-        }
+        #endregion
+
+        #region Editing Buttons
 
         private void btn_company_edit_Click(object sender, EventArgs e)
         {
@@ -216,11 +205,9 @@ namespace IA04
             ReloadGrids();
         }
 
-        private void ReloadGrids()
-        {
-            _mainViewModel.LoadListOfCompanies();
-            LoadGrid(dgv_companies, _mainViewModel.ListOfCompanies);
-        }
+        #endregion
+
+        #region Setting Lead Buttons
 
         private void btn_company_setLead_Click(object sender, EventArgs e)
         {
@@ -257,6 +244,113 @@ namespace IA04
             }
             ReloadGrids();
         }
+
+        #endregion
+
+        #region Employee Buttons
+        private void btn_ViewEmployees_Click(object sender, EventArgs e)
+        {
+            using (EmployeesView viewEmployees = new EmployeesView(null))
+            {
+                viewEmployees.ShowDialog();
+            }
+        }
+
+        private void btn_AssignEmployee_Click(object sender, EventArgs e)
+        {
+            using (EmployeesView assignEmployee = new EmployeesView(Convert.ToInt32(dgv_departments.SelectedCells[0].Value)))
+            {
+                assignEmployee.ShowDialog();
+            }
+            ReloadGrids();
+        }
+
+        private void btn_RemoveEmployee_Click(object sender, EventArgs e)
+        {
+            _mainViewModel.RemoveEmployee(Convert.ToInt32(dgv_employees.SelectedCells[0].Value));
+            ReloadGrids();
+        }
+
+        #endregion
+
+        #region Handling Button Locking
+
+        private void SetUpButtons()
+        {
+            _companyButtons = new List<Button>() { btn_company_edit, btn_company_remove, btn_company_setLead, btn_company_show, btn_division_add };
+            _divisionButtons = new List<Button>() { btn_division_edit, btn_division_remove, btn_division_setLead, btn_division_show, btn_project_add };
+            _projectButtons = new List<Button>() { btn_project_edit, btn_project_remove, btn_project_setLead, btn_project_show, btn_department_add };
+            _departmentButtons = new List<Button>() { btn_department_edit, btn_department_remove, btn_department_setLead, btn_department_show, btn_AssignEmployee };
+            _employeeButtons = new List<Button>() { btn_RemoveEmployee };
+        }
+
+        private void LockButtons()
+        {
+            int companyCounter = dgv_companies.Rows.Count;
+            int divisionCounter = dgv_divisions.Rows.Count;
+            int projectCounter = dgv_projects.Rows.Count;
+            int departmentCounter = dgv_departments.Rows.Count;
+            int employeeCounter = dgv_employees.Rows.Count;
+
+            List<Button> companyButtons = new List<Button>() { btn_company_edit, btn_company_remove, btn_company_setLead, btn_company_show, btn_division_add };
+            List<Button> divisionButtons = new List<Button>() { btn_division_edit, btn_division_remove, btn_division_setLead, btn_division_show, btn_project_add };
+            List<Button> projectButtons = new List<Button>() { btn_project_edit, btn_project_remove, btn_project_setLead, btn_project_show, btn_department_add };
+            List<Button> departmentButtons = new List<Button>() { btn_department_edit, btn_department_remove, btn_department_setLead, btn_department_show, btn_AssignEmployee };
+            List<Button> employeeButtons = new List<Button>() { btn_RemoveEmployee };
+
+            foreach (Button button in companyButtons)
+            {
+                button.Enabled = companyCounter != 0;
+            }
+
+            foreach (Button button in divisionButtons)
+            {
+                button.Enabled = divisionCounter != 0;
+            }
+
+            foreach (Button button in projectButtons)
+            {
+                button.Enabled = projectCounter != 0;
+            }
+
+            foreach (Button button in departmentButtons)
+            {
+                button.Enabled = departmentCounter != 0;
+            }
+
+            foreach (Button button in employeeButtons)
+            {
+                button.Enabled = employeeCounter != 0;
+            }
+        }
+
+        #endregion
+
+        private void ReloadGrids()
+        {
+            _mainViewModel.LoadListOfCompanies();
+            LoadGrid(dgv_companies, _mainViewModel.ListOfCompanies);
+        }
+
+        private void LoadGrid(DataGridView dataGridView, List<NodeModel> listOfNodes)
+        {
+            dataGridView.Rows.Clear();
+            foreach (var node in listOfNodes)
+            {
+                dataGridView.Rows.Add(node.NodeID, node.Name, node.Code, node.DirectorID);
+            }
+        }
+
+        private void LoadGrid(DataGridView dataGridView, List<EmployeeModel> listOfEmployees)
+        {
+            dataGridView.Rows.Clear();
+            foreach (var employee in listOfEmployees)
+            {
+                dataGridView.Rows.Add(employee.EmployeeID, employee.FirstName, employee.LastName);
+            }
+        }
+
+
     }
 }
 
