@@ -12,5 +12,11 @@ Change that to 'Server = **{SET YOUR SERVER PATH HERE}**; Database = CompanyHier
 
 You can find your server path in SQL Management Studio if you right-click on your database name on the left-most window and check Properties
 
-### Run The Program
+## Reinstall Nugget
+
+For a reason beyond my understanding, the NUGGET used to generate random names doesn't always re-download. If that is the case, please download 'RandomNameGeneratorLibrary' by Mark Rogers for correct functioning of the program.
+
+If the Nugget isn't installed, the generation of random names will not work (which is not exactly a part of the assignmentm but whatevs).
+
+## Run The Program
 Now you should be able to run the program.
