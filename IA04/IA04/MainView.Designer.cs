@@ -395,6 +395,7 @@
             this.btn_company_setLead.TabIndex = 2;
             this.btn_company_setLead.Text = "Set Director";
             this.btn_company_setLead.UseVisualStyleBackColor = true;
+            this.btn_company_setLead.Click += new System.EventHandler(this.btn_company_setLead_Click);
             // 
             // btn_division_setLead
             // 
@@ -404,6 +405,7 @@
             this.btn_division_setLead.TabIndex = 2;
             this.btn_division_setLead.Text = "Set Division Director";
             this.btn_division_setLead.UseVisualStyleBackColor = true;
+            this.btn_division_setLead.Click += new System.EventHandler(this.btn_division_setLead_Click);
             // 
             // btn_project_setLead
             // 
@@ -413,6 +415,7 @@
             this.btn_project_setLead.TabIndex = 2;
             this.btn_project_setLead.Text = "Set Project Lead";
             this.btn_project_setLead.UseVisualStyleBackColor = true;
+            this.btn_project_setLead.Click += new System.EventHandler(this.btn_project_setLead_Click);
             // 
             // btn_department_setLead
             // 
@@ -422,6 +425,7 @@
             this.btn_department_setLead.TabIndex = 2;
             this.btn_department_setLead.Text = "Set Department Head";
             this.btn_department_setLead.UseVisualStyleBackColor = true;
+            this.btn_department_setLead.Click += new System.EventHandler(this.btn_department_setLead_Click);
             // 
             // dgv_divisions
             // 

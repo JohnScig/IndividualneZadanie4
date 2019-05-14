@@ -18,8 +18,5 @@ namespace IA04
         {
             _functions.AddEmployee(title, firstName, lastName, phone, email, ParentNodeID);
         }
-
-
-        //AddEmployee()
     }
 }

@@ -34,6 +34,7 @@ namespace IA04
             else
             {
                 dgv_divisions.Rows.Clear();
+                lbl_CompanyDirector.Text = "";
             }
         }
 
@@ -48,6 +49,7 @@ namespace IA04
             else
             {
                 dgv_projects.Rows.Clear();
+                lbl_DivisionDirector.Text = "";
             }
         }
 
@@ -62,6 +64,7 @@ namespace IA04
             else
             {
                 dgv_departments.Rows.Clear();
+                lbl_ProjectDirector.Text = "";
             }
         }
 
@@ -76,6 +79,7 @@ namespace IA04
             else
             {
                 dgv_employees.Rows.Clear();
+                lbl_DepartmentHead.Text = "";
             }
         }
 
@@ -212,15 +216,47 @@ namespace IA04
             ReloadGrids();
         }
 
-
-
         private void ReloadGrids()
         {
             _mainViewModel.LoadListOfCompanies();
             LoadGrid(dgv_companies, _mainViewModel.ListOfCompanies);
         }
 
+        private void btn_company_setLead_Click(object sender, EventArgs e)
+        {
+            using (SetLeaderView setLeader = new SetLeaderView(Convert.ToInt32(dgv_companies.SelectedCells[0].Value)))
+            {
+                setLeader.ShowDialog();
+            }
+            ReloadGrids();
+        }
 
+        private void btn_division_setLead_Click(object sender, EventArgs e)
+        {
+            using (SetLeaderView setLeader = new SetLeaderView(Convert.ToInt32(dgv_divisions.SelectedCells[0].Value)))
+            {
+                setLeader.ShowDialog();
+            }
+            ReloadGrids();
+        }
+
+        private void btn_project_setLead_Click(object sender, EventArgs e)
+        {
+            using (SetLeaderView setLeader = new SetLeaderView(Convert.ToInt32(dgv_projects.SelectedCells[0].Value)))
+            {
+                setLeader.ShowDialog();
+            }
+            ReloadGrids();
+        }
+
+        private void btn_department_setLead_Click(object sender, EventArgs e)
+        {
+            using (SetLeaderView setLeader = new SetLeaderView(Convert.ToInt32(dgv_departments.SelectedCells[0].Value)))
+            {
+                setLeader.ShowDialog();
+            }
+            ReloadGrids();
+        }
     }
 }
 

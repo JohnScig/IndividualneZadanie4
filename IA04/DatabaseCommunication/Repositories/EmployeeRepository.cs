@@ -65,6 +65,99 @@ namespace DatabaseCommunication.Repositories
 
         }
 
+        public void EmployPerson(int employeeID, int nodeID)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return;
+                }
+
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = @"UPDATE Employees SET DepartmentID = @NodeID, WHERE EmployeeID = @EmployeeID ";
+
+                    command.Parameters.Add("@NodeID", SqlDbType.Int).Value = nodeID;
+                    command.Parameters.Add("@EmployeeID", SqlDbType.Int).Value = employeeID;
+
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return;
+                    }
+                }
+            }
+        }
+
+        public List<EmployeeModel> GetUnemployed()
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
+            {
+                List<EmployeeModel> employees = new List<EmployeeModel>();
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                    return employees;
+                }
+
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = @"SELECT * FROM Employees
+                                            WHERE DepartmentID IS NULL";
+
+                    try
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+
+                            while (reader.Read())
+                            {
+                                EmployeeModel employee = new EmployeeModel();
+                                employee.EmployeeID = reader.GetInt32(0);
+                                employee.Title = reader.GetString(1);
+                                employee.LastName = reader.GetString(2);
+                                employee.FirstName = reader.GetString(3);
+                                employee.Phone = reader.GetString(4);
+                                employee.Email = reader.GetString(5);
+                                employee.DepartmentID = reader.IsDBNull(6) ? (int?)null : reader.GetInt32(6);
+
+                                employees.Add(employee);
+                            }
+                            return employees;
+                        }
+                    }
+
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                        return employees;
+                    }
+
+                }
+            }
+        }
+
         public void AddEmployee(EmployeeModel employee)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))

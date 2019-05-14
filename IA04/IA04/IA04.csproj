@@ -69,6 +69,13 @@
     <Compile Include="MainViewModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SetLeaderView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetLeaderView.Designer.cs">
+      <DependentUpon>SetLeaderView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SetLeaderViewModel.cs" />
     <EmbeddedResource Include="EditEmployeeView.resx">
       <DependentUpon>EditEmployeeView.cs</DependentUpon>
     </EmbeddedResource>
@@ -87,6 +94,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SetLeaderView.resx">
+      <DependentUpon>SetLeaderView.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

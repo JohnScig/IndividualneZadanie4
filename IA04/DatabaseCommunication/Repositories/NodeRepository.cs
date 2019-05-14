@@ -66,6 +66,41 @@ namespace DatabaseCommunication.Repositories
             }
         }
 
+        public void SetNewBoss(int nodeID, int employeeID)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                }
+                catch (SqlException e)
+                {
+                    Debug.WriteLine("Exception throw when opening connection to database! Exception description follows");
+                    Debug.WriteLine(e.ToString());
+                }
+
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = @"UPDATE Nodes SET DirectorID = @EmployeeID WHERE NodeID = @NodeID ";
+                    command.Parameters.Add("@EmployeeID", SqlDbType.Int).Value = employeeID;
+                    command.Parameters.Add("@NodeID", SqlDbType.Int).Value = nodeID;
+
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine("Exception throw when executing SQL command. Exception description follows");
+                        Debug.WriteLine(e.ToString());
+                    }
+                }
+            }
+        }
+
         public void EditNode(int nodeID, string companyName, string companyCode)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))

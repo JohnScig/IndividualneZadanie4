@@ -33,9 +33,26 @@ namespace Logic
             _employeeRepository.AddEmployee(employee);
         }
 
+        public List<EmployeeModel> GetUnemployed()
+        {
+            return _employeeRepository.GetUnemployed();
+
+        }
+
         public NodeModel GetNode(int nodeID)
         {
             return _nodeRepository.GetNode(nodeID);
+        }
+
+        public void RemoveDirectorFromNode(int nodeID)
+        {
+            _nodeRepository.RemoveDirectorFromNode(nodeID);
+        }
+
+        public void SetNewBoss(int nodeID, int employeeID)
+        {
+            _nodeRepository.SetNewBoss(nodeID, employeeID);
+            _employeeRepository.EmployPerson(employeeID, nodeID);
         }
 
         public void EditNode(int nodeID, string companyName, string companyCode)
