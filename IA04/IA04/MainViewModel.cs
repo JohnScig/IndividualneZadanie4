@@ -67,13 +67,23 @@ namespace IA04
 
         internal void RemoveNode(int nodeID)
         {
-
             foreach (var item in _functions.GetChildren(nodeID))
             {
                 RemoveNode(item.NodeID);
             }
+
+            foreach (var item in _functions.GetEmployeesByDept(nodeID))
+            {
+                _functions.RemoveEmployee(item.EmployeeID);
+            }
+
             _functions.RemoveNode(nodeID);
 
+        }
+
+        internal void RemoveEmployee(int employeeID)
+        {
+            _functions.RemoveEmployee(employeeID);
         }
     }
 }

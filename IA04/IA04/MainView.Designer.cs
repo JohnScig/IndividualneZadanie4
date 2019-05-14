@@ -201,6 +201,7 @@
             this.btn_company_edit.TabIndex = 2;
             this.btn_company_edit.Text = "Edit Company";
             this.btn_company_edit.UseVisualStyleBackColor = true;
+            this.btn_company_edit.Click += new System.EventHandler(this.btn_company_edit_Click);
             // 
             // btn_company_show
             // 
@@ -299,6 +300,7 @@
             this.btn_division_edit.TabIndex = 2;
             this.btn_division_edit.Text = "Edit Division";
             this.btn_division_edit.UseVisualStyleBackColor = true;
+            this.btn_division_edit.Click += new System.EventHandler(this.btn_division_edit_Click);
             // 
             // btn_division_show
             // 
@@ -317,6 +319,7 @@
             this.btn_project_edit.TabIndex = 2;
             this.btn_project_edit.Text = "Edit Project";
             this.btn_project_edit.UseVisualStyleBackColor = true;
+            this.btn_project_edit.Click += new System.EventHandler(this.btn_project_edit_Click);
             // 
             // btn_project_show
             // 
@@ -335,6 +338,7 @@
             this.btn_department_edit.TabIndex = 2;
             this.btn_department_edit.Text = "Edit Department";
             this.btn_department_edit.UseVisualStyleBackColor = true;
+            this.btn_department_edit.Click += new System.EventHandler(this.btn_department_edit_Click);
             // 
             // btn_department_show
             // 
@@ -371,6 +375,7 @@
             this.btn_employee_fire.TabIndex = 2;
             this.btn_employee_fire.Text = "Fire Employee";
             this.btn_employee_fire.UseVisualStyleBackColor = true;
+            this.btn_employee_fire.Click += new System.EventHandler(this.btn_employee_fire_Click);
             // 
             // btn_employee_hire
             // 

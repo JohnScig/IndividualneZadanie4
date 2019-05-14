@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace IA04
 {
-    class AddEmployeeFormViewModel
+    class EditEmployeeViewModel
     {
         private Functions _functions = new Functions();
 

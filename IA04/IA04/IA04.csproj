@@ -46,20 +46,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddEmployeeFormView.cs">
+    <Compile Include="EditEmployeeView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddEmployeeFormView.Designer.cs">
-      <DependentUpon>AddEmployeeFormView.cs</DependentUpon>
+    <Compile Include="EditEmployeeView.Designer.cs">
+      <DependentUpon>EditEmployeeView.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddEmployeeFormViewModel.cs" />
-    <Compile Include="AddFormView.cs">
+    <Compile Include="EditEmployeeViewModel.cs" />
+    <Compile Include="EditNodeView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddFormView.Designer.cs">
-      <DependentUpon>AddFormView.cs</DependentUpon>
+    <Compile Include="EditNodeView.Designer.cs">
+      <DependentUpon>EditNodeView.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddFormViewModel.cs" />
+    <Compile Include="EditNodeViewModel.cs" />
     <Compile Include="MainView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,11 +69,11 @@
     <Compile Include="MainViewModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddEmployeeFormView.resx">
-      <DependentUpon>AddEmployeeFormView.cs</DependentUpon>
+    <EmbeddedResource Include="EditEmployeeView.resx">
+      <DependentUpon>EditEmployeeView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddFormView.resx">
-      <DependentUpon>AddFormView.cs</DependentUpon>
+    <EmbeddedResource Include="EditNodeView.resx">
+      <DependentUpon>EditNodeView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>

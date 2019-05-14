@@ -86,13 +86,6 @@ namespace IA04
             {
                 dataGridView.Rows.Add(node.NodeID, node.Name, node.Code, node.DirectorID);
             }
-
-            //dataGridView.DataSource = listOfNodes;
-            //dataGridView.Columns[0].Visible = false;
-            //dataGridView.Columns[3].Visible = false;
-            //dataGridView.Columns[4].Visible = false;
-            //dataGridView.Columns[5].Visible = false;
-            //dataGridView.Columns[2].FillWeight = 60;
         }
 
         private void LoadGrid(DataGridView dataGridView, List<EmployeeModel> listOfEmployees)
@@ -106,7 +99,7 @@ namespace IA04
 
         private void btn_company_add_Click(object sender, EventArgs e)
         {
-            using (AddFormView addCompany = new AddFormView(HierarchyLevel.Company, null))
+            using (EditNodeView addCompany = new EditNodeView(HierarchyLevel.Company, null))
             {
                 addCompany.ShowDialog();
             }
@@ -116,7 +109,7 @@ namespace IA04
         private void btn_division_add_Click(object sender, EventArgs e)
         {
             int parentNodeID = Convert.ToInt32(dgv_companies.SelectedRows[0].Cells[0].Value);
-            using (AddFormView addDivision = new AddFormView(HierarchyLevel.Division, parentNodeID))
+            using (EditNodeView addDivision = new EditNodeView(HierarchyLevel.Division, parentNodeID))
             {
                 addDivision.ShowDialog();
             }
@@ -126,7 +119,7 @@ namespace IA04
         private void btn_project_add_Click(object sender, EventArgs e)
         {
             int parentNodeID = Convert.ToInt32(dgv_divisions.SelectedRows[0].Cells[0].Value);
-            using (AddFormView addProject = new AddFormView(HierarchyLevel.Project, parentNodeID))
+            using (EditNodeView addProject = new EditNodeView(HierarchyLevel.Project, parentNodeID))
             {
                 addProject.ShowDialog();
             }
@@ -136,23 +129,17 @@ namespace IA04
         private void btn_department_add_Click(object sender, EventArgs e)
         {
             int parentNodeID = Convert.ToInt32(dgv_projects.SelectedRows[0].Cells[0].Value);
-            using (AddFormView addDepartment = new AddFormView(HierarchyLevel.Project, parentNodeID))
+            using (EditNodeView addDepartment = new EditNodeView(HierarchyLevel.Project, parentNodeID))
             {
                 addDepartment.ShowDialog();
             }
             ReloadGrids();
         }
 
-        private void ReloadGrids()
-        {
-            _mainViewModel.LoadListOfCompanies();
-            LoadGrid(dgv_companies, _mainViewModel.ListOfCompanies);
-        }
-
         private void btn_employee_hire_Click(object sender, EventArgs e)
         {
             int parentNodeID = Convert.ToInt32(dgv_departments.SelectedRows[0].Cells[0].Value);
-            using (AddEmployeeFormView addDepartment = new AddEmployeeFormView(parentNodeID))
+            using (EditEmployeeView addDepartment = new EditEmployeeView(parentNodeID))
             {
                 addDepartment.ShowDialog();
             }
@@ -182,6 +169,58 @@ namespace IA04
             _mainViewModel.RemoveNode(Convert.ToInt32(dgv_companies.SelectedRows[0].Cells[0].Value));
             ReloadGrids();
         }
+
+        private void btn_employee_fire_Click(object sender, EventArgs e)
+        {
+            _mainViewModel.RemoveEmployee(Convert.ToInt32(dgv_employees.SelectedRows[0].Cells[0].Value));
+            ReloadGrids();
+        }
+
+        private void btn_company_edit_Click(object sender, EventArgs e)
+        {
+            using (EditNodeView editCompany = new EditNodeView(Convert.ToInt32(dgv_companies.SelectedCells[0].Value)))
+            {
+                editCompany.ShowDialog();
+            }
+            ReloadGrids();
+        }
+
+        private void btn_division_edit_Click(object sender, EventArgs e)
+        {
+            using (EditNodeView editCompany = new EditNodeView(Convert.ToInt32(dgv_divisions.SelectedCells[0].Value)))
+            {
+                editCompany.ShowDialog();
+            }
+            ReloadGrids();
+        }
+
+        private void btn_project_edit_Click(object sender, EventArgs e)
+        {
+            using (EditNodeView editCompany = new EditNodeView(Convert.ToInt32(dgv_projects.SelectedCells[0].Value)))
+            {
+                editCompany.ShowDialog();
+            }
+            ReloadGrids();
+        }
+
+        private void btn_department_edit_Click(object sender, EventArgs e)
+        {
+            using (EditNodeView editCompany = new EditNodeView(Convert.ToInt32(dgv_departments.SelectedCells[0].Value)))
+            {
+                editCompany.ShowDialog();
+            }
+            ReloadGrids();
+        }
+
+
+
+        private void ReloadGrids()
+        {
+            _mainViewModel.LoadListOfCompanies();
+            LoadGrid(dgv_companies, _mainViewModel.ListOfCompanies);
+        }
+
+
     }
 }
 

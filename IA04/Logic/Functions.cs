@@ -33,6 +33,16 @@ namespace Logic
             _employeeRepository.AddEmployee(employee);
         }
 
+        public NodeModel GetNode(int nodeID)
+        {
+            return _nodeRepository.GetNode(nodeID);
+        }
+
+        public void EditNode(int nodeID, string companyName, string companyCode)
+        {
+            _nodeRepository.EditNode(nodeID, companyName, companyCode);
+        }
+
         public List<NodeModel> GetChildren(int parentNodeID)
         {
             return _nodeRepository.GetChildNodes(parentNodeID);
@@ -62,7 +72,13 @@ namespace Logic
 
         public void RemoveNode(int nodeID)
         {
+            //_nodeRepository.RemoveDirectorFromNode(nodeID);
             _nodeRepository.RemoveNodeByID(nodeID);
+        }
+
+        public void RemoveEmployee(int employeeID)
+        {
+            _employeeRepository.RemoveEmployeeFromPosition(employeeID);
         }
     }
 }

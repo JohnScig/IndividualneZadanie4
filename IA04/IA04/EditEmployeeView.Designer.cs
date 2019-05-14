@@ -1,6 +1,6 @@
 ﻿namespace IA04
 {
-    partial class AddEmployeeFormView
+    partial class EditEmployeeView
     {
         /// <summary>
         /// Required designer variable.
@@ -39,6 +39,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tb_Email = new System.Windows.Forms.TextBox();
             this.btn_OK = new System.Windows.Forms.Button();
+            this.btn_generate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -82,21 +83,21 @@
             this.tb_Title.Location = new System.Drawing.Point(102, 28);
             this.tb_Title.Name = "tb_Title";
             this.tb_Title.Size = new System.Drawing.Size(200, 20);
-            this.tb_Title.TabIndex = 3;
+            this.tb_Title.TabIndex = 0;
             // 
             // tb_FirstName
             // 
             this.tb_FirstName.Location = new System.Drawing.Point(102, 52);
             this.tb_FirstName.Name = "tb_FirstName";
             this.tb_FirstName.Size = new System.Drawing.Size(200, 20);
-            this.tb_FirstName.TabIndex = 3;
+            this.tb_FirstName.TabIndex = 1;
             // 
             // tb_LastName
             // 
             this.tb_LastName.Location = new System.Drawing.Point(102, 78);
             this.tb_LastName.Name = "tb_LastName";
             this.tb_LastName.Size = new System.Drawing.Size(200, 20);
-            this.tb_LastName.TabIndex = 3;
+            this.tb_LastName.TabIndex = 2;
             // 
             // tb_Phone
             // 
@@ -119,23 +120,34 @@
             this.tb_Email.Location = new System.Drawing.Point(102, 130);
             this.tb_Email.Name = "tb_Email";
             this.tb_Email.Size = new System.Drawing.Size(200, 20);
-            this.tb_Email.TabIndex = 3;
+            this.tb_Email.TabIndex = 4;
             // 
             // btn_OK
             // 
             this.btn_OK.Location = new System.Drawing.Point(227, 216);
             this.btn_OK.Name = "btn_OK";
             this.btn_OK.Size = new System.Drawing.Size(75, 23);
-            this.btn_OK.TabIndex = 4;
+            this.btn_OK.TabIndex = 5;
             this.btn_OK.Text = "OK";
             this.btn_OK.UseVisualStyleBackColor = true;
             this.btn_OK.Click += new System.EventHandler(this.btn_OK_Click);
+            // 
+            // btn_generate
+            // 
+            this.btn_generate.Location = new System.Drawing.Point(12, 216);
+            this.btn_generate.Name = "btn_generate";
+            this.btn_generate.Size = new System.Drawing.Size(101, 23);
+            this.btn_generate.TabIndex = 6;
+            this.btn_generate.Text = "Generate random";
+            this.btn_generate.UseVisualStyleBackColor = true;
+            this.btn_generate.Click += new System.EventHandler(this.btn_generate_Click);
             // 
             // AddEmployeeFormView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(323, 255);
+            this.Controls.Add(this.btn_generate);
             this.Controls.Add(this.btn_OK);
             this.Controls.Add(this.tb_Email);
             this.Controls.Add(this.tb_Phone);
@@ -167,5 +179,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tb_Email;
         private System.Windows.Forms.Button btn_OK;
+        private System.Windows.Forms.Button btn_generate;
     }
 }
