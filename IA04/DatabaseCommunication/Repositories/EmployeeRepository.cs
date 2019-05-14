@@ -11,9 +11,12 @@ namespace DatabaseCommunication.Repositories
 {
     public class EmployeeRepository
     {
+        private static string connString = Properties.Settings1.Default.ConnString;
+
+
         public EmployeeModel GetEmployeeByID(int employeeID)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 EmployeeModel employee = new EmployeeModel();
                 try
@@ -67,7 +70,7 @@ namespace DatabaseCommunication.Repositories
 
         public void EditEmployee(EmployeeModel employee)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -116,7 +119,7 @@ namespace DatabaseCommunication.Repositories
 
         public void EmployPerson(int employeeID, int nodeID)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -154,7 +157,7 @@ namespace DatabaseCommunication.Repositories
 
         public List<EmployeeModel> GetUnassigned()
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 List<EmployeeModel> employees = new List<EmployeeModel>();
                 try
@@ -209,7 +212,7 @@ namespace DatabaseCommunication.Repositories
 
         public void AddEmployee(EmployeeModel employee)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -252,7 +255,7 @@ namespace DatabaseCommunication.Repositories
 
         public List<EmployeeModel> GetEmployeesByDept(int departmentID)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 List<EmployeeModel> employees = new List<EmployeeModel>();
                 try
@@ -310,7 +313,7 @@ namespace DatabaseCommunication.Repositories
 
         public void RemoveEmployee(int employeeID)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -344,7 +347,7 @@ namespace DatabaseCommunication.Repositories
 
         public void RemoveEmployeeFromPosition(int employeeID)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {

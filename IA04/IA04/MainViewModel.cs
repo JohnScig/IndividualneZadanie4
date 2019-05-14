@@ -56,7 +56,7 @@ namespace IA04
 
         internal void LoadListOfEmployees(int parentNodeID)
         {
-            ListOfEmployees = _functions.GetEmployeesByDept(parentNodeID);
+            ListOfEmployees = _functions.GetEmployeesByNode(parentNodeID);
         }
 
         internal string GetLeader(int employeeID)
@@ -72,7 +72,7 @@ namespace IA04
                 RemoveNode(item.NodeID);
             }
 
-            foreach (var item in _functions.GetEmployeesByDept(nodeID))
+            foreach (var item in _functions.GetEmployeesByNode(nodeID))
             {
                 _functions.RemoveEmployee(item.EmployeeID);
             }

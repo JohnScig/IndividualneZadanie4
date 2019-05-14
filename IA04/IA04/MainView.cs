@@ -27,6 +27,7 @@ namespace IA04
             _mainViewModel = new MainViewModel();
             LoadGrid(dgv_companies, _mainViewModel.ListOfCompanies);
             SetUpButtons();
+            LockButtons();
         }
 
         #region Selection Changed
@@ -330,6 +331,7 @@ namespace IA04
         {
             _mainViewModel.LoadListOfCompanies();
             LoadGrid(dgv_companies, _mainViewModel.ListOfCompanies);
+            LockButtons();
         }
 
         private void LoadGrid(DataGridView dataGridView, List<NodeModel> listOfNodes)

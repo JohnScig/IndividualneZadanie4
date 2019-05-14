@@ -89,7 +89,7 @@ namespace Logic
             return _nodeRepository.GetChildNodes(parentNodeID);
         }
 
-        public List<EmployeeModel> GetEmployeesByDept(int nodeID)
+        public List<EmployeeModel> GetEmployeesByNode(int nodeID)
         {
             return _employeeRepository.GetEmployeesByDept(nodeID);
         }

@@ -13,9 +13,11 @@ namespace DatabaseCommunication.Repositories
     public class NodeRepository
     {
 
+        private static string connString = Properties.Settings1.Default.ConnString;
+
         public NodeModel GetNode(int nodeID)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 NodeModel node = new NodeModel();
                 try
@@ -68,7 +70,7 @@ namespace DatabaseCommunication.Repositories
 
         public void SetNewBoss(int nodeID, int employeeID)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -103,7 +105,7 @@ namespace DatabaseCommunication.Repositories
 
         public void EditNode(int nodeID, string companyName, string companyCode)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -139,7 +141,7 @@ namespace DatabaseCommunication.Repositories
 
         public List<NodeModel> GetChildNodes(int parentNodeID)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 List<NodeModel> nodes = new List<NodeModel>();
                 try
@@ -194,7 +196,7 @@ namespace DatabaseCommunication.Repositories
 
         public void RemoveNodeByID(int nodeID)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -228,7 +230,7 @@ namespace DatabaseCommunication.Repositories
 
         public List<NodeModel> GetCompanies()
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 List<NodeModel> nodes = new List<NodeModel>();
                 try
@@ -281,7 +283,7 @@ namespace DatabaseCommunication.Repositories
 
         public void AddNode(NodeModel node)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -325,7 +327,7 @@ namespace DatabaseCommunication.Repositories
 
         public void RemoveDirectorFromNode (int nodeID)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings1.Default.ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
