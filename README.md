@@ -5,6 +5,7 @@ Please run the CompanyHierarchyScript_JohnScig.sql in Microsoft SQL Studio. Run 
 
 ## Change Database Path
 In the project, change the path to database. 
+
 It is set in 'DatabaseCommunication -> Properties -> Settings1.Settings on the ConnString setting.
 
 Change that to 'Server = **{SET YOUR SERVER PATH HERE}**; Database = CompanyHierarchy; Trusted_Connection = True;'
