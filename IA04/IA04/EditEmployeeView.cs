@@ -12,8 +12,12 @@ namespace IA04
 {
     public partial class EditEmployeeView : Form
     {
+        #region Field
         private EditEmployeeViewModel _editEmployeeViewModel;
 
+        #endregion
+
+        #region Constructor
         public EditEmployeeView(int? employeeID)
         {
             InitializeComponent();
@@ -22,6 +26,9 @@ namespace IA04
                 LoadTextBoxes();
         }
 
+        #endregion
+
+        #region Loading Functions
         private void LoadTextBoxes()
         {
             tb_Title.Text = _editEmployeeViewModel.employee.Title;
@@ -31,6 +38,9 @@ namespace IA04
             tb_Email.Text = _editEmployeeViewModel.employee.Email;
         }
 
+        #endregion
+
+        #region Button Handling Functions
         private void btn_OK_Click(object sender, EventArgs e)
         {
             _editEmployeeViewModel.HandleOK(tb_Title.Text, tb_FirstName.Text, tb_LastName.Text, tb_Phone.Text, tb_Email.Text);
@@ -51,5 +61,7 @@ namespace IA04
         {
             this.Close();
         }
+
+        #endregion
     }
 }

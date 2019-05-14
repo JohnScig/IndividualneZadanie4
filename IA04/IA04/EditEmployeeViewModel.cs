@@ -11,10 +11,17 @@ namespace IA04
 {
     class EditEmployeeViewModel
     {
+        #region Field
         private Functions _functions = new Functions();
 
+        #endregion
+
+        #region Properties
         public EmployeeModel employee { get; set; }
 
+        #endregion
+
+        #region Constructor
         public EditEmployeeViewModel(int? employeeID)
         {
             if (employeeID != null)
@@ -22,7 +29,9 @@ namespace IA04
                 employee = _functions.GetEmployeeByID((int)employeeID);
             }
         }
+        #endregion
 
+        #region Button Handling Functions
         internal void HandleOK(string title, string firstName, string lastName, string phone, string email)
         {
             if (employee == null)
@@ -34,15 +43,19 @@ namespace IA04
                 EditEmployee(title, firstName, lastName, phone, email);
             }
         }
+        #endregion
 
-        public void AddEmployee(string title, string firstName, string lastName, string phone, string email)
+        #region Private Functions
+        private void AddEmployee(string title, string firstName, string lastName, string phone, string email)
         {
             _functions.AddEmployee(title, firstName, lastName, phone, email);
         }
 
-        public void EditEmployee(string title, string firstName, string lastName, string phone, string email)
+        private void EditEmployee(string title, string firstName, string lastName, string phone, string email)
         {
             _functions.EditEmployee(employee.EmployeeID, title, firstName, lastName, phone, email);
         }
+
+        #endregion
     }
 }

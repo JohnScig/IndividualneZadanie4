@@ -13,9 +13,11 @@ namespace IA04
 {
     public partial class SetLeaderView : Form
     {
+        #region Fields
         private SetLeaderViewModel _setLeaderViewModel;
+        #endregion
 
-
+        #region Constructor
         public SetLeaderView(int nodeID)
         {
             InitializeComponent();
@@ -23,7 +25,9 @@ namespace IA04
             LoadLabels();
             LoadComboBox();
         }
+        #endregion
 
+        #region Loading Functions
         private void LoadLabels()
         {
             lbl_CompanyName.Text = _setLeaderViewModel.Node.Name;
@@ -45,7 +49,9 @@ namespace IA04
             string firstname = ((EmployeeModel)e.ListItem).LastName;
             e.Value = lastname + " " + firstname;
         }
+        #endregion
 
+        #region Button Handling Functions
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -63,5 +69,6 @@ namespace IA04
             _setLeaderViewModel.SetNewBoss((int)cb_Leader.SelectedValue);
             this.Close();
         }
+        #endregion
     }
 }

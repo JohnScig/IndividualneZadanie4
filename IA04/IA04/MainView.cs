@@ -14,13 +14,16 @@ namespace IA04
 {
     public partial class MainView : Form
     {
+        #region Fields
         private MainViewModel _mainViewModel;
         private List<Button> _companyButtons;
         private List<Button> _divisionButtons;
         private List<Button> _projectButtons;
         private List<Button> _departmentButtons;
         private List<Button> _employeeButtons;
+        #endregion
 
+        #region Constructor
         public MainView()
         {
             InitializeComponent();
@@ -29,6 +32,7 @@ namespace IA04
             SetUpButtons();
             LockButtons();
         }
+        #endregion
 
         #region Selection Changed
         private void dgv_companies_SelectionChanged(object sender, EventArgs e)
@@ -327,6 +331,7 @@ namespace IA04
 
         #endregion
 
+        #region Loading Functions
         private void ReloadGrids()
         {
             _mainViewModel.LoadListOfCompanies();
@@ -351,23 +356,7 @@ namespace IA04
                 dataGridView.Rows.Add(employee.EmployeeID, employee.FirstName, employee.LastName);
             }
         }
-
+        #endregion
 
     }
 }
-
-
-// unifying the selection functions
-//private void SelectionChanged(object sender)
-//{
-//    DataGridView dgv = (DataGridView)sender;
-//    if (dgv.SelectedRows.Count != 0)
-//    {
-//        _mainViewModel.LoadListOfProjects(Convert.ToInt32(dgv.SelectedRows[0].Cells[0].Value));
-//        LoadGrid(dgv_projects, _mainViewModel.ListOfProjects);
-//    }
-//    else
-//    {
-//        dgv_projects.Rows.Clear();
-//    }
-//}

@@ -12,8 +12,11 @@ namespace IA04
 {
     class MainViewModel
     {
+        #region Constructor
         private Functions _functions = new Functions();
+        #endregion
 
+        #region Properties
         public List<NodeModel> ListOfCompanies { get; set; } = new List<NodeModel>();
         public List<NodeModel> ListOfDivisions { get; set; } = new List<NodeModel>();
         public List<NodeModel> ListOfProjects { get; set; } = new List<NodeModel>();
@@ -23,16 +26,17 @@ namespace IA04
         public EmployeeModel CompanyLead { get; set; } = new EmployeeModel();
         public EmployeeModel DivisionLead { get; set; } = new EmployeeModel();
         public EmployeeModel ProjectLead { get; set; } = new EmployeeModel();
-
-
         public EmployeeModel DepartmentLead { get; set; } = new EmployeeModel();
+        #endregion
 
-
+        #region Constructor
         public MainViewModel()
         {
             LoadListOfCompanies();
         }
+        #endregion
 
+        #region Loading Functions
         internal void LoadListOfCompanies()
         {
             ListOfCompanies = _functions.GetCompanies();
@@ -64,7 +68,9 @@ namespace IA04
             EmployeeModel employee = _functions.GetEmployeeByID(employeeID);
             return $"{employee.FirstName} {employee.LastName}";
         }
+        #endregion
 
+        #region Removal Functions
         internal void RemoveNode(int nodeID)
         {
             foreach (var item in _functions.GetChildren(nodeID))
@@ -85,5 +91,6 @@ namespace IA04
         {
             _functions.RemoveEmployee(employeeID);
         }
+        #endregion
     }
 }

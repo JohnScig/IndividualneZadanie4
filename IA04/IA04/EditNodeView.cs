@@ -13,8 +13,12 @@ namespace IA04
 {
     public partial class EditNodeView : Form
     {
-        EditNodeViewModel _editNodeViewModel;
 
+        #region Field
+        private EditNodeViewModel _editNodeViewModel;
+        #endregion
+
+        #region Constructor
         public EditNodeView(int nodeID)
         {
             InitializeComponent();
@@ -27,16 +31,17 @@ namespace IA04
             InitializeComponent();
             _editNodeViewModel = new EditNodeViewModel(hierarchyLevel, parentNodeID);
         }
+        #endregion
 
-
+        #region Loading Function
         private void LoadInfo()
         {
             tb_name.Text = _editNodeViewModel.Node.Name;
             tb_code.Text = _editNodeViewModel.Node.Code;
         }
+        #endregion
 
-
-
+        #region Button Handling Function
         private void btn_OK_Click(object sender, EventArgs e)
         {
             _editNodeViewModel.HandleClick(tb_name.Text, tb_code.Text);
@@ -48,6 +53,7 @@ namespace IA04
             this.Close();
         }
 
+        #endregion
 
     }
 }

@@ -12,8 +12,11 @@ namespace IA04
 {
     public partial class EmployeesView : Form
     {
+        #region Fields
         private EmployeesViewModel _employeesViewModel;
+        #endregion
 
+        #region Constructor
         public EmployeesView(int? nodeID)
         {
             InitializeComponent();
@@ -25,7 +28,9 @@ namespace IA04
             }
             LoadGrid();
         }
+        #endregion
 
+        #region Functions For Handling Grids
         private void LoadGrid()
         {
             dgv_unassigned.Rows.Clear();
@@ -43,7 +48,9 @@ namespace IA04
             btn_remove.Enabled = (count != 0);
             btn_OK.Enabled = (count != 0);
         }
+        #endregion
 
+        #region Button Handling functions
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -78,5 +85,6 @@ namespace IA04
             _employeesViewModel.DeleteEmployee(Convert.ToInt32(dgv_unassigned.SelectedCells[0].Value));
             LoadGrid();
         }
+        #endregion
     }
 }

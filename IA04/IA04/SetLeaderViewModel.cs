@@ -11,17 +11,23 @@ namespace IA04
     class SetLeaderViewModel
     {
 
+        #region Fields
         private Functions _functions = new Functions();
+        #endregion
 
+        #region Properties
         public NodeModel Node { get; set; }
         public List<EmployeeModel> unemployedPeople;
+        #endregion
 
-
+        #region Constructor
         public SetLeaderViewModel(int nodeID)
         {
             Node = _functions.GetNode(nodeID);
         }
+        #endregion
 
+        #region Loading Functions
         internal string LoadDirector()
         {
             if (Node.DirectorID == null)
@@ -41,7 +47,9 @@ namespace IA04
             unemployedPeople = new List<EmployeeModel>();
             unemployedPeople = _functions.GetUnassigned();
         }
+        #endregion
 
+        #region Button Handling Functions
         internal void RemoveBoss()
         {
             if (Node.DirectorID != null)
@@ -57,5 +65,6 @@ namespace IA04
             _functions.EmployPerson(employeeID, Node.NodeID);
 
         }
+        #endregion
     }
 }
